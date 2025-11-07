@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain Search - Find Available .com Domains</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 Domain Search</h1>
+            <p class="subtitle">Find available .com domains using the ICANN zone file</p>
+        </header>
+
+        <main>
+            <div class="search-section">
+                <h2>Search Options</h2>
+
+                <div class="search-option">
+                    <h3>Single Domain</h3>
+                    <p>Check if a specific domain is available</p>
+                    <div class="input-group">
+                        <input type="text" id="singleDomain" placeholder="Enter domain name">
+                        <button onclick="searchSingle()">Search</button>
+                    </div>
+                </div>
+
+                <div class="search-option">
+                    <h3>Dictionary Words</h3>
+                    <p>Find available dictionary words (may take a moment)</p>
+                    <div class="input-group">
+                        <input type="number" id="dictMaxLength" value="8" min="1" max="15" placeholder="Max length">
+                        <button onclick="searchDictionary()">Search</button>
+                    </div>
+                </div>
+
+                <div class="search-option">
+                    <h3>Word Combinations</h3>
+                    <p>Check if a combination of two words is available</p>
+                    <div class="input-group">
+                        <input type="text" id="word1" placeholder="First word">
+                        <input type="text" id="word2" placeholder="Second word">
+                        <button onclick="searchCombination()">Search</button>
+                    </div>
+                </div>
+
+                <div class="search-option">
+                    <h3>Short Word Combinations</h3>
+                    <p>Find available combinations of short words (3-4 letters)</p>
+                    <div class="input-group">
+                        <input type="number" id="shortMaxLength" value="4" min="2" max="6" placeholder="Max word length">
+                        <button onclick="searchShortCombinations()">Search</button>
+                    </div>
+                </div>
+
+                <div class="search-option">
+                    <h3>Letter-Number Patterns</h3>
+                    <p>Find short domains like q7r7.com or e3p3.com</p>
+                    <div class="input-group">
+                        <button onclick="searchLetterNumber()">Search</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <div id="loading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Searching...</p>
+                </div>
+
+                <div id="error" class="error" style="display: none;"></div>
+
+                <div id="results" class="results"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>
+                Based on the method by <a href="https://sive.rs/com" target="_blank">Derek Sivers</a>
+                <br>
+                <small>
+                    You must first download and process the ICANN zone file.
+                    See the <a href="https://github.com" target="_blank">README</a> for instructions.
+                </small>
+            </p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
