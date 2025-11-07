@@ -52,18 +52,60 @@ uv sync
 
 ### Step 1: Apply for ICANN Zone File Access
 
+**📖 Detailed Setup Guide**: See [CZDS_SETUP_GUIDE.md](CZDS_SETUP_GUIDE.md) for complete step-by-step instructions.
+
+**Quick Start:**
+
 1. Go to [ICANN CZDS](https://czds.icann.org/)
-2. Create an account and apply for access to the .com zone file
-3. Wait for approval (usually takes a few days)
-4. More info: [Verisign Zone File Access](https://www.verisign.com/en_US/channel-resources/domain-registry-products/zone-file/index.xhtml)
+2. Create an account (free)
+3. Log in and request access to the **.com** zone file
+4. Wait for approval (usually takes 1-3 business days)
+5. You'll receive an email when approved
+
+**Testing Authentication:**
+
+Once you have your account, test it:
+
+```bash
+cd domain_search
+uv run python scripts/check_czds_status.py
+```
+
+This will verify your credentials and show which zone files you have access to.
+
+More info: [Verisign Zone File Access](https://www.verisign.com/en_US/channel-resources/domain-registry-products/zone-file/index.xhtml)
 
 ### Step 2: Download the Zone File
 
-Once approved:
+**📖 Detailed Setup Guide**: See [CZDS_SETUP_GUIDE.md](CZDS_SETUP_GUIDE.md) for complete step-by-step instructions.
+
+Once approved, you can download automatically or manually:
+
+#### Option A: Automated Download (Recommended)
+
+```bash
+cd domain_search
+
+# Set your credentials (or edit the script)
+export CZDS_USERNAME="your-email@example.com"
+export CZDS_PASSWORD="your-password"
+
+# Download the zone file
+uv run python scripts/download_zone_file.py
+```
+
+The script will:
+- Authenticate with CZDS
+- List available zone files
+- Download the .com zone file to `domain_search/data/`
+- Show download progress
+
+#### Option B: Manual Download
 
 1. Log in to [CZDS](https://czds.icann.org/)
-2. Download **com.txt.gz** (approximately 4.6GB compressed)
-3. Decompress it:
+2. Navigate to "Downloads" or "My Zone Files"
+3. Download **com.txt.gz** (approximately 4.6GB compressed)
+4. Decompress it:
 
 ```bash
 gunzip com.txt.gz
